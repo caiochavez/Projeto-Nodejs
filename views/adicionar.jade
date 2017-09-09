@@ -1,0 +1,44 @@
+extends layout
+
+link(rel='stylesheet' href='/css/principal.css')
+
+block cabecalho
+  h2 Cadastrar Usuário
+block conteudo
+  if messages.erro
+      div(class="alert alert-danger")
+          each msg in messages.erro
+              b= msg
+              br
+  if messages.info
+      div(class="alert alert-success")
+          p #{messages.info}
+          br
+  .form-group
+      form(method='post' action='/cadastrar')
+                label(for='exampleInputPassword1') Nome:
+                |     
+                input#exampleInputPassword1.form-control(type='text', placeholder='Nome Completo', name='nome', required)
+                br
+                label(for='exampleInputPassword1') Email:
+                |     
+                input#exampleInputPassword1.form-control(type='email', placeholder='Email', name='email', required)
+                br
+                label(for='exampleInputPassword1') Data de Nacimento:
+                |     
+                input#exampleInputPassword1.form-control(type='date', name='data_nascimento', required)
+                br
+                label(for='exampleInputPassword1') Senha:
+                |     
+                input#exampleInputPassword1.form-control(type='password', placeholder='Senha', name='senha', required)
+                br
+                label(for='exampleInputPassword1') Cidade/Estado:
+                |     
+                input#exampleInputPassword1.form-control(type='text', placeholder='Cidade e Estado', name='cidade_estado', required)
+                br
+                label(for='exampleInputPassword1') Rua/Número/Bairro:
+                |     
+                input#exampleInputPassword1.form-control(type='text', placeholder='Rua, Número e Bairro', name='rua_numero_bairro', required)
+                br
+                button.btn.btn-success(type='submit') Enviar
+                br

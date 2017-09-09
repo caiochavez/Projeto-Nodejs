@@ -1,0 +1,40 @@
+extends layout
+
+link(rel='stylesheet' href='/css/principal.css')
+
+block cabecalho
+    h2 Editar
+block conteudo
+    if messages.erro
+        div(class="alert alert-danger")
+            p #{messages.erro}
+            br
+    if messages.info
+        div(class="alert alert-success")
+            p #{messages.info}
+            br
+      .form-group
+        form(method='post' action='/editar/#{model._id}')
+                label(for='exampleInputPassword1') Nome:
+                |     
+                input#exampleInputPassword1.form-control(type='text', placeholder='Nome Completo', name='nome', value='#{model.nome}', required)
+                br
+                label(for='exampleInputPassword1') Email:
+                |     
+                input#exampleInputPassword1.form-control(type='email', placeholder='Email', name='email', value='#{model.email}', required)
+                br
+                label(for='exampleInputPassword1') Cidade e Estado:
+                |     
+                input#exampleInputPassword1.form-control(type='text', placeholder='Cidade e estado', name='cidade_estado', value='#{model.endereco.cidade_estado}', required)
+                br
+                label(for='exampleInputPassword1') Rua, Número e Bairro:
+                |     
+                input#exampleInputPassword1.form-control(type='text', placeholder='Rua, Número Bairro', name='nome', value='#{model.endereco.rua_numero_bairro}', required)
+                br
+                label(for='exampleInputPassword1') Nova senha:
+                |     
+                input#exampleInputPassword1.form-control(type='password', placeholder='Senha', name='senha', value='#{model.senha}', required)
+                br
+                button.btn.btn-success(type='submit') Enviar
+                span &nbsp;
+                a(href="/listar" class="btn btn-primary") Voltar

@@ -1,0 +1,72 @@
+doctype html
+html
+  head
+    title= 'Projeto do Caio'
+    meta(charset='utf-8')
+    link(rel='stylesheet', href='/css/style.css')
+    link(rel='stylesheet' href='/css/bootstrap.min.css')
+    script(href='/js/bootstrap.min.js')
+    script(href='https://code.jquery.com/jquery-1.10.2.js')
+  body
+    block content
+            nav.navbar.navbar-default.navbar-static-top
+    .container-fluid
+        // Brand and toggle get grouped for better mobile display
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+            span.sr-only Toggle navigation
+            | &#x9;&#x9;&#x9;&#x9;
+            span.icon-bar
+            | &#x9;&#x9;&#x9;&#x9;
+            span.icon-bar
+            | &#x9;&#x9;&#x9;&#x9;
+            span.icon-bar
+          | &#x9;&#x9;&#x9;
+          a.navbar-brand(href='#')
+            if isLogged
+              | Bem vindo #{session.nome} !
+        // Collect the nav links, forms, and other content for toggling
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          form.navbar-form.navbar-left(method='get', action='/buscar')
+            .form-group
+              input.form-control(type='text', name='nome_busca', placeholder='Buscar por nome')
+            | &#x9;&#x9;&#x9;&#x9;
+            button.btn.btn-default(type='submit')
+              i.glyphicon.glyphicon-search
+          | &#x9;&#x9;&#x9;
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href='http://www.fjn.edu.br', target='_blank') Visite nosso Site
+            | &#x9;&#x9;&#x9;&#x9;
+            li
+              a(href='/sair')
+                | Sair
+    | &#x9;
+    .container-fluid.main-container
+      .col-md-2.sidebar
+        ul.nav.nav-pills.nav-stacked
+          li.active
+            a(href='/cadastrar' id='cadastrar') Cadastrar
+          | &#x9;&#x9;&#x9;&#x9;
+          li
+            a(href='/listar' id='listar') Listar
+          | &#x9;&#x9;&#x9;&#x9;
+          li
+            a(href='/sobre' id='sobre') Sobre
+      | &#x9;&#x9;
+      .col-md-10.content
+        .panel.panel-default
+          .panel-heading
+            block cabecalho
+          .panel-body
+            block conteudo 
+      | &#x9;&#x9;
+      footer.pull-left.footer
+        p.col-md-12
+          hr.divider
+          | &#x9;&#x9;&#x9;&#x9;Caio Chaves,  2017
+    block scripts
+
+
+
+

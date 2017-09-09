@@ -1,0 +1,52 @@
+extends layout
+
+link(rel='stylesheet' href='/css/principal.css')
+
+block cabecalho
+  h2 Listagem de usuários
+block conteudo
+  if messages.erro
+      div(class="alert alert-danger")
+          p #{messages.erro}
+          br
+  if messages.info
+      div(class="alert alert-success")
+          p #{messages.info}
+          br
+  if lista.length > 0
+      table.table.table-bordered
+            thead
+                tr
+                  th Nome:       
+                  th Email:  
+                  th Data de Nascimento:
+                  th Cidade e Estado:
+                  th Rua, Número e Bairro:
+                  th Ações:
+            |   
+            tbody
+                each valor in lista
+                  tr
+                    td #{valor.nome}      
+                    td #{valor.email}
+                    td #{valor.data_nascimento}
+                    td #{valor.endereco.cidade_estado}
+                    td #{valor.endereco.rua_numero_bairro}
+                    td
+                      a(href="/editar/#{valor._id}", class="btn btn-primary")
+                          span(class="glyphcon glyphicon-pencil")
+                      br
+                      a(href="/remover/#{valor._id}", class="btn btn-danger" id="excluir-form")
+                          span(class="glyphicon glyphicon-trash")
+  else
+    h3 Nenhum registro encontrado
+block scripts
+  script(type='text/javascript').
+    $(document).ready(function(){
+       $('#excluir-form').click(function(){
+          var pergunta = confirm('Deseja realmente excluir?');
+          if(!pergunta){
+             return false;
+          }
+       });
+    });

@@ -1,0 +1,26 @@
+extends layout
+
+link(rel='stylesheet' href='/css/principal.css')
+
+block cabecalho
+  h2 Busca
+block conteudo
+            if messages.erro
+              div(class="alert alert-danger")
+                each msg in messages.erro
+                  b= msg
+                  br
+          if lista.length > 0
+            table.table.table-bordered
+              thead
+                tr
+                  th Nome:       
+                  th Email:  
+                  th Data de Nascimento:
+              |   
+              tbody
+                each valor in lista
+                  tr
+                    td #{valor.nome}      
+                    td #{valor.email}
+                    td #{valor.data_nascimento}
